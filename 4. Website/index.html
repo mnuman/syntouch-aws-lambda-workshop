@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="https://syntouch.nl/sites/all/themes/syntouch/css/main.css?pc0285" media="all" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body style="text-align:center">
+		<div class="logo"><a href="/"><img src="https://syntouch.nl/sites/all/themes/syntouch/images/logo.png" alt="SynTouch " /></a></div>	
+        <h1>BEER VOTE - Your most important vote this year!</h1>
+	<div class="form">
+        <form action="https://hbmx5ycpma.execute-api.eu-west-1.amazonaws.com/dev/SyntouchBeerVoter" method="post" onsubmit="hideForm()">
+            <div class="center">
+                <div>
+                <input type="radio" name="style" value="IPA" id="radio2"><label for="radio2">IPA</label>
+                </div><div>
+                <input type="radio" name="style" value="Weizen" id="radio3"><label for="radio3">Weizen</label>
+                </div><div>
+                <input type="radio" name="style" value="BlondAle" id="radio4"><label for="radio4">Blond Ale</label>
+                </div><div>
+                <input type="radio" name="style" value="PaleAle" id="radio5"><label for="radio5">Pale Ale</label>
+                </div>
+            </div>
+            <div style="padding-top: 20px;"><input type="submit" value="Submit" /></div>
+        </form>
+    </div>
+	<div class="thanks" style="display:none">Thanks for voting!</div>
+	
+	<h1>RESULTS</h1>
+	<svg class="chart"></svg>
+	
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var createCORSRequest = function(method, url) {
+	var xhr = new XMLHttpRequest();
+	if ("withCredentials" in xhr) {
+		// Most browsers.
+		xhr.open(method, url, true);
+	} else if (typeof XDomainRequest != "undefined") {
+		// IE8 & IE9
+		xhr = new XDomainRequest();
+		xhr.open(method, url);
+	} else {
+		// CORS not supported.
+		xhr = null;
+	}
+	return xhr;
+};
+
+var loadXMLDoc = function(autoRefresh){
+	var width = 600,
+    	barHeight = 50,
+		padding = 60;
+	
+	var url = 'data.json';
+	var method = 'GET';
+	var xhr = createCORSRequest(method, url);
+
+	xhr.onload = function(req) {	  
+          console.log(data);
+		  var data = JSON.parse(this.responseText);
+          console.log(data);
+		  
+		  data = data.sort((a,b) => b.counter - a.counter);
+		  
+		  var x = d3.scaleLinear()
+		      .domain([0, d3.max(data, function(d) { return d.counter + padding; })])
+		      .range([0, width]);
+		  
+		  var chart = d3.select(".chart")
+		      .attr("width", width)
+		      .attr("height", barHeight * data.length);
+			  
+		  chart.selectAll("*").remove()
+
+		  var bar = chart.selectAll("g")
+		      .data(data)
+		    .enter().append("g")
+		      .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+		  
+		  bar.append("rect")
+		      .attr("width",  function(d) { return x(d.counter) + padding; })
+		      .attr("height", barHeight - 1);
+
+		  bar.append("text")
+		      .attr("x", function(d) { return x(d.counter) + padding - 3; })
+		      .attr("y", barHeight / 2)
+		      .attr("dy", ".35em")
+		      .text(function(d) { return d.style + ': ' + d.counter; });
+		  
+	};
+
+	xhr.onerror = function() {
+	  // Error code goes here.
+	};
+
+  	xhr.send();
+	
+	//AutoRefresh
+	if(autoRefresh){
+		window.setTimeout(loadXMLDoc, 3000, true);
+	}
+}
+
+function type(d) {
+  d.counter = +d.counter; // coerce to number
+  return d;
+}
+
+function hideForm(){
+	d3.select(".form").style("display", "none");
+	d3.select(".thanks").style("display", "block");
+	window.setTimeout(loadXMLDoc, 1200, false);
+}
+
+loadXMLDoc(true);
+</script>
+</body>
+</html>
