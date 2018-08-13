@@ -10,4 +10,4 @@ During this workshop you will be guided to:
 All tutorials can be completed using the instructions provided with the code snippets and some knowledge on Node.js from my previous Bits & Bites. If you have not attended it, you can the materials [here](https://github.com/mnuman/syntouch-node-js).
 But of course Google will also help you out a lot and if stuck ... just ask!
 
-I may have made some typos in the preparation, or have omitted some details that turn out to be crucial - if so I apologize, but please let me know so we can put up and advance warning for the students who have not yet reached this stage!
+Let me know if you encounter any errors or omissions in the material!
