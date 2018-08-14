@@ -1,0 +1,14 @@
+{
+   "Records": [
+      {
+         "s3": {
+            "bucket": {
+               "name": "mn-image-bucket"
+            },
+            "object": {
+               "key": "images/CANTONA.jpg"
+            }
+         }
+      }
+   ]
+}
