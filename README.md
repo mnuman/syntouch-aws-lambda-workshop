@@ -13,4 +13,4 @@ But of course Google will also help you out a lot and if you're stuck ... just a
 Please let me know if you encounter any errors or omissions in the material!
 
 If you finish early, consider implementing the following use case:
-* Guys don't want to commit ! Implement a TweetBot to celebrate your Github commits, powered by AWS Lambda! [TeetBot](https://github.com/mnuman/syntouch-aws-lambda-workshop/blob/master/5-Tweetbot/TweetBot.pdf) - ???
+* Guys don't want to commit ! Implement a TweetBot to celebrate your Github commits, powered by AWS Lambda! [TweetBot](https://github.com/mnuman/syntouch-aws-lambda-workshop/blob/master/5-Tweetbot/TweetBot.pdf) - ???
