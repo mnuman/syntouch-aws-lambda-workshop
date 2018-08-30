@@ -13,4 +13,4 @@ But of course Google will also help you out a lot and if you're stuck ... just a
 Please let me know if you encounter any errors or omissions in the material!
 
 If you finish early - or need to be challenged, consider implementing the following use case:
-* Guys don't want to commit ! Implement a TweetBot to celebrate your Github commits, powered by AWS Lambda! [TweetBot](https://github.com/mnuman/syntouch-aws-lambda-workshop/blob/master/5-Tweetbot/TweetBot.pdf) - ???
+* Guys don't want to commit ! Implement a MessageBot to celebrate your Github commits, powered by AWS Lambda! This comes in two different flavours - [TweetBot](https://github.com/mnuman/syntouch-aws-lambda-workshop/blob/master/5-MessageBot/TweetBot.pdf) if you do have a Twitter Developer Account, otherwise you can also share your messages on our SynTouch Yammer network [YammerBot](https://github.com/mnuman/syntouch-aws-lambda-workshop/blob/master/5-MessageBot/YammerBot.pdf).
